@@ -1,0 +1,16 @@
+{
+  "name": "nexhack-live-multilingual-captioning-room",
+  "version": "1.0.0",
+  "description": "NexHack 2.0 Problem Statement 02 (EdTech): Live Multilingual Captioning Room",
+  "scripts": {
+    "server": "node server/index.js",
+    "client": "npm --prefix client run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build:client": "npm --prefix client run build",
+    "test:extension": "node chrome-extension/test_extension.js",
+    "start": "node server/index.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

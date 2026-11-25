@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyClassRoom - Live Voice Translator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="in-sidepanel">
+  <div id="app">
+    
+    <!-- 1. Header (Zero Login / Zero Room Setup Required) -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="brand-icon" title="MyClassRoom Voice Translator">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="2"></circle>
+            <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"></path>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">
+            <span>MyClassRoom</span>
+            <span class="brand-badge">Voice Translator</span>
+          </div>
+          <div class="header-status">
+            <span id="statusDot" class="status-dot"></span>
+            <span id="statusText">Ready to Translate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Toggle Black / White Mode -->
+        <button id="btnToggleTheme" class="btn-icon" title="Toggle Black / White Mode">
+          <svg id="themeIcon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. Navigation Tabs (Translator | Notes | History) -->
+    <nav class="nav-tabs">
+      <button id="tabBtnTranslator" class="tab-btn active">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+        </svg>
+        <span>Translator</span>
+        <span id="badgeLiveCount" class="tab-badge">0</span>
+      </button>
+
+      <button id="tabBtnNotes" class="tab-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        <span>Notes</span>
+        <span id="badgeNotesCount" class="tab-badge">0</span>
+      </button>
+
+      <button id="tabBtnHistory" class="tab-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        <span>History</span>
+        <span id="badgeHistoryCount" class="tab-badge">0</span>
+      </button>
+    </nav>
+
+    <!-- ───── VIEW 1: LIVE TRANSLATOR ───── -->
+    <section id="viewTranslator" class="view-panel active">
+      <!-- Multilingual Language Selection Bar (25+ Languages Supported) -->
+      <div class="language-toolbar">
+        <div class="lang-selector-group">
+          <div class="lang-select-box">
+            <span class="lang-select-tag">From:</span>
+            <select id="selectSourceLang" class="lang-dropdown" title="Select speaker's language"></select>
+          </div>
+
+          <button id="btnSwapLanguages" class="btn-swap-lang" title="Click to swap Speaker & Translation languages (⇄)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m16 3 4 4-4 4"></path>
+              <path d="M20 7H4"></path>
+              <path d="m8 21-4-4 4-4"></path>
+              <path d="M4 17h16"></path>
+            </svg>
+          </button>
+
+          <div class="lang-select-box">
+            <span class="lang-select-tag">To:</span>
+            <select id="selectTargetLang" class="lang-dropdown" title="Select translation language"></select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 5px;">
+          <button id="btnSaveToHistory" class="btn-pill" title="Save current session to History">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            <span>Save Session</span>
+          </button>
+          <button id="btnClearLive" class="btn-pill" title="Clear current translation feed">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path></svg>
+            <span>Clear</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Voice Action Bar -->
+      <div class="voice-action-bar">
+        <button id="btnMicToggle" class="btn-mic-main" title="Start or Stop listening to speaker voice">
+          <svg id="micIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="22"></line>
+          </svg>
+          <span id="micButtonText">Listen to Speaker (Zoom / Mic)</span>
+        </button>
+
+        <button id="btnSimulate" class="btn-simulate" title="Simulate realistic speaker speech">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>Simulate</span>
+        </button>
+      </div>
+
+      <!-- Live Interim Speech Bubble -->
+      <div id="liveInterimBubble" class="live-speech-bubble" style="display: none;">
+        <svg class="interim-mic-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+        </svg>
+        <div style="flex: 1;">
+          <div id="interimOriginalText" class="interim-text">Listening to speaker...</div>
+          <div id="interimTranslatedText" class="interim-trans">Translating...</div>
+        </div>
+      </div>
+
+      <!-- Scrollable Live Translations Stream -->
+      <main id="translatorStream" class="translator-stream">
+        <div id="emptyTranslatorState" class="empty-state">
+          <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="m5 8 6 6"></path>
+            <path d="m4 14 6-6 2-3"></path>
+            <path d="M2 5h12"></path>
+            <path d="M7 2h1"></path>
+            <path d="m22 22-5-10-5 10"></path>
+            <path d="M14 18h6"></path>
+          </svg>
+          <div class="empty-title">Speaker Voice Translator</div>
+          <div class="empty-subtitle">Click <strong>Listen to Speaker</strong> while your Zoom class is speaking, or click <strong>Simulate</strong> to test!</div>
+        </div>
+        <div id="utterancesContainer" style="display: flex; flex-direction: column; gap: 8px;"></div>
+      </main>
+    </section>
+
+    <!-- ───── VIEW 2: NOTES SECTION ───── -->
+    <section id="viewNotes" class="view-panel">
+      <div class="notes-container">
+        <!-- Notes Toolbar -->
+        <div class="notes-toolbar">
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <button id="btnImportFromLive" class="btn-pill" title="Import all live translated sentences into notes">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+              <span>Import from Translator</span>
+            </button>
+            <button id="btnAddBullet" class="btn-pill" title="Add a new bullet point">
+              <span>• Bullet</span>
+            </button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <button id="btnCopyNotes" class="btn-pill" title="Copy notes to clipboard">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy</span>
+            </button>
+            <button id="btnExportNotes" class="btn-pill" title="Download notes as file">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Export</span>
+            </button>
+            <button id="btnClearNotes" class="btn-pill" title="Clear notes">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Notes Textarea -->
+        <div class="notes-editor-wrap">
+          <textarea id="notesEditor" class="notes-textarea" placeholder="📝 Study Notes Section:
+
+Type your personal lecture notes here or click 'Import from Translator' to convert spoken speech into structured study notes!
+
+Notes are automatically saved locally and won't be lost on close."></textarea>
+        </div>
+
+        <div class="notes-footer-info">
+          <span id="notesSaveStatus">✓ Auto-saved locally</span>
+          <span id="notesWordCount">0 words</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───── VIEW 3: HISTORY SAVE SECTION ───── -->
+    <section id="viewHistory" class="view-panel">
+      <div class="history-container">
+        <!-- History Search Bar -->
+        <div class="history-search-bar">
+          <div class="search-input-wrap">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="historySearchInput" class="search-input" placeholder="Search saved lecture history...">
+          </div>
+          <button id="btnClearAllHistory" class="btn-pill" style="color: #f87171;" title="Clear all saved history">Clear All</button>
+        </div>
+
+        <!-- History Sessions List -->
+        <div id="historyList" class="history-list">
+          <div id="emptyHistoryState" class="empty-state">
+            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <div class="empty-title">No Saved History Yet</div>
+            <div class="empty-subtitle">When you translate speaker speech, click <strong>Save Session</strong> to save complete lecture history with transcripts!</div>
+          </div>
+          <div id="historyCardsContainer" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="toastNotice" class="toast-notice" style="display: none;"></div>
+
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

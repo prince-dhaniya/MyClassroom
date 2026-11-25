@@ -1,0 +1,116 @@
+{
+  "createdAt": 1795569681159,
+  "hostSocketId": "5PAQvrte6hMS-es0AAAA",
+  "hostName": "Prof. Sharma (Teacher)",
+  "participants": [],
+  "blockedUsers": {},
+  "removedUsers": {},
+  "joinedHistory": {},
+  "sessionMap": {
+    "prof. sharma (teacher)": "sess_1795571763647_8qocbtl",
+    "prof. sharma": "sess_1795569685374_2o8vxa3"
+  },
+  "events": [
+    {
+      "roomId": "lecture-101",
+      "eventId": "evt_join_1795566923922_t9ap",
+      "participantId": "mc6LKfdCMc-dnQzgAAAA",
+      "participantName": "Prof. Sharma (Teacher)",
+      "language": "en",
+      "text": "👨‍🏫 [Teacher / Host] Prof. Sharma (Teacher) joined the class [Language: English 🇬🇧]",
+      "translation": "👨‍🏫 [Teacher / Host] Prof. Sharma (Teacher) कक्षा में शामिल हुए [भाषा: English 🇬🇧]",
+      "type": "system_join",
+      "status": "final",
+      "confidence": 1,
+      "timestamp": 1795566923922,
+      "formattedTime": "00:35:23"
+    },
+    {
+      "roomId": "lecture-101",
+      "eventId": "evt_join_1795566923946_mt4z",
+      "participantId": "mc6LKfdCMc-dnQzgAAAA",
+      "participantName": "Prof. Sharma (Teacher)",
+      "language": "en",
+      "text": "👨‍🏫 [Teacher / Host] Prof. Sharma (Teacher) joined the class [Language: English 🇬🇧]",
+      "translation": "👨‍🏫 [Teacher / Host] Prof. Sharma (Teacher) कक्षा में शामिल हुए [भाषा: English 🇬🇧]",
+      "type": "system_join",
+      "status": "final",
+      "confidence": 1,
+      "timestamp": 1795566923947,
+      "formattedTime": "00:35:23"
+    },
+    {
+      "roomId": "lecture-101",
+      "eventId": "evt_join_1795569685521_1yxn",
+      "participantId": "vzALyj5rUL6JbyxAAAAB",
+      "participantName": "Prof. Sharma",
+      "language": "en",
+      "type": "system_join",
+      "text": "👨‍🏫 [Teacher / Host] Prof. Sharma joined the class [Language: English 🇬🇧]",
+      "translation": "👨‍🏫 [Teacher / Host] Prof. Sharma कक्षा में शामिल हुए [भाषा: English 🇬🇧]",
+      "status": "final",
+      "confidence": 1,
+      "timestamp": 1795569685522
+    },
+    {
+      "roomId": "lecture-101",
+      "eventId": "evt_1795571822520_55flx",
+      "participantId": "_AKfd9KIIS2BFeB4AAAC",
+      "participantName": "Prof. Sharma (Teacher)",
+      "language": "en",
+      "text": "Hello who is having here",
+      "status": "final",
+      "timestamp": 1795571830559,
+      "translation": "हेलो यहाँ कौन है",
+      "confidence": 1
+    },
+    {
+      "roomId": "lecture-101",
+      "eventId": "evt_1795571830559_rxti2",
+      "participantId": "_AKfd9KIIS2BFeB4AAAC",
+      "participantName": "Prof. Sharma (Teacher)",
+      "language": "en",
+      "text": " Hello what is happening here",
+      "status": "final",
+      "timestamp": 1795571840226,
+      "translation": "हेलो यहाँ क्या हो रहा है",
+      "confidence": 1
+    },
+    {
+      "roomId": "lecture-101",
+      "eventId": "evt_1795571840227_gesnu",
+      "participantId": "_AKfd9KIIS2BFeB4AAAC",
+      "participantName": "Prof. Sharma (Teacher)",
+      "language": "en",
+      "text": " Are you mad",
+      "status": "final",
+      "timestamp": 1795571858045,
+      "translation": "क्या तुम पागल हो?",
+      "confidence": 1
+    },
+    {
+      "roomId": "lecture-101",
+      "eventId": "evt_1795571858045_jv9kb",
+      "participantId": "_AKfd9KIIS2BFeB4AAAC",
+      "participantName": "Prof. Sharma (Teacher)",
+      "language": "en",
+      "text": " Are you mad",
+      "status": "final",
+      "timestamp": 1795571860162,
+      "translation": "क्या तुम पागल हो?",
+      "confidence": 1
+    },
+    {
+      "roomId": "lecture-101",
+      "eventId": "evt_1795571860162_unl4y",
+      "participantId": "_AKfd9KIIS2BFeB4AAAC",
+      "participantName": "Prof. Sharma (Teacher)",
+      "language": "en",
+      "text": "By the",
+      "status": "partial",
+      "timestamp": 1795571887004,
+      "translation": "",
+      "confidence": 1
+    }
+  ]
+}

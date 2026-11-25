@@ -1,0 +1,88 @@
+/* MyClassRoom - Content Script Floating Subtitle Styles */
+#myclassroom-floating-subtitle-root {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+}
+
+#myclassroom-floating-subtitle-root.myclassroom-overlay-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+
+.myclassroom-card {
+  background: rgba(13, 17, 23, 0.94);
+  backdrop-filter: blur(8px);
+  border: 1px solid #2d333b;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 1px rgba(59, 130, 246, 0.5);
+  width: 320px;
+  padding: 10px 12px;
+  color: #f0f6fc;
+}
+
+.myclassroom-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2d333b;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+
+.myclassroom-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #58a6ff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.myclassroom-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3b82f6;
+  box-shadow: 0 0 6px #3b82f6;
+}
+
+.myclassroom-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.myclassroom-btn {
+  background: #1a2538;
+  border: 1px solid #2d333b;
+  color: #8b949e;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.myclassroom-btn:hover {
+  color: #ffffff;
+  border-color: #58a6ff;
+  background: #242d3d;
+}
+
+.myclassroom-text {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #ffffff;
+  min-height: 20px;
+}
